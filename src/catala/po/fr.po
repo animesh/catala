@@ -1,0 +1,40 @@
+#
+# Denis Merigoux <denis.merigoux@netc.fr>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-01 16:34+0000\n"
+"PO-Revision-Date: 2020-05-01 18:39+0200\n"
+"Last-Translator: Denis Merigoux <denis.merigoux@netc.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Team: français <>\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: ../driver.ml:23
+msgid "Reading files..."
+msgstr "Lecture des fichiers"
+
+#: ../driver.ml:26
+msgid "Source file %s must have the .catala extension!"
+msgstr "Le fichier source %s doit avoir l'extension .catala !"
+
+#: ../driver.ml:47
+msgid "The selected backend (%s) is not supported by Catala"
+msgstr "La cible choisie (%s) n'est pas supportée par Catala"
+
+#: ../driver.ml:36
+msgid "The selected language (%s) is not supported by Catala"
+msgstr "Le langage choisi (%s) n'est pas supporté par Catala"
+
+#: ../driver.ml:71
+msgid "Weaving literate program into %s"
+msgstr "Tissage du programme littéraire dans %s"
+
+#: ../driver.ml:99
+msgid "Writing to %s"
+msgstr "Écriture dans %s"

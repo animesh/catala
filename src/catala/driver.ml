@@ -13,15 +13,17 @@
    the License. *)
 
 module I = Ir
+open Localize.Gettext
 
 (** Entry function for the executable. Returns a negative number in case of error. *)
 let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
     (pygmentize_loc : string option) (backend : string) (language : string option)
     (output_file : string option) : int =
   Cli.debug_flag := debug;
-  Cli.debug_print "Reading files...";
+  Cli.debug_print (s_ "Reading files...");
   if Filename.extension source_file <> ".catala" then begin
-    Cli.error_print (Printf.sprintf "Source file %s must have the .catala extension!" source_file);
+    Cli.error_print
+      (Printf.sprintf (f_ "Source file %s must have the .catala extension!") source_file);
     exit 1
   end;
   let language =
@@ -30,7 +32,8 @@ let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
         if l = "fr" then Cli.Fr
         else if l = "en" then Cli.En
         else begin
-          Cli.error_print (Printf.sprintf "The selected language (%s) is not supported by Catala" l);
+          Cli.error_print
+            (Printf.sprintf (f_ "The selected language (%s) is not supported by Catala") l);
           exit 1
         end
     | None -> Cli.Fr
@@ -41,7 +44,7 @@ let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
     else if backend = "HTML" then Cli.Html
     else begin
       Cli.error_print
-        (Printf.sprintf "The selected backend (%s) is not supported by Catala" backend);
+        (Printf.sprintf (f_ "The selected backend (%s) is not supported by Catala") backend);
       exit 1
     end
   in
@@ -64,7 +67,8 @@ let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
       0
   | Cli.Latex | Cli.Html -> (
       Cli.debug_print
-        (Printf.sprintf "Weaving literate program into %s"
+        (Printf.sprintf
+           (f_ "Weaving literate program into %s")
            (match backend with Cli.Latex -> "LaTeX" | Cli.Html -> "HTML" | _ -> assert false));
       try
         let weaved_output =
@@ -92,7 +96,7 @@ let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
             | _ -> assert false
           else weaved_output
         in
-        Cli.debug_print (Printf.sprintf "Writing to %s" output_file);
+        Cli.debug_print (Printf.sprintf (f_ "Writing to %s") output_file);
         let oc = open_out output_file in
         Printf.fprintf oc "%s" weaved_output;
         close_out oc;
