@@ -3,38 +3,38 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Catala\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 16:34+0000\n"
-"PO-Revision-Date: 2020-05-01 18:39+0200\n"
+"POT-Creation-Date: 2020-05-01 17:19+0000\n"
+"PO-Revision-Date: 2020-05-01 19:25+0200\n"
 "Last-Translator: Denis Merigoux <denis.merigoux@netc.fr>\n"
+"Language-Team: français <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language-Team: français <>\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: ../driver.ml:23
+#: ../catala/driver.ml:24
 msgid "Reading files..."
-msgstr "Lecture des fichiers"
+msgstr "Lecture des fichiers source..."
 
-#: ../driver.ml:26
+#: ../catala/driver.ml:27
 msgid "Source file %s must have the .catala extension!"
 msgstr "Le fichier source %s doit avoir l'extension .catala !"
 
-#: ../driver.ml:47
+#: ../catala/driver.ml:48
 msgid "The selected backend (%s) is not supported by Catala"
-msgstr "La cible choisie (%s) n'est pas supportée par Catala"
+msgstr "La cible sélectionnée (%s) n'est pas supportée par Catala"
 
-#: ../driver.ml:36
+#: ../catala/driver.ml:37
 msgid "The selected language (%s) is not supported by Catala"
-msgstr "Le langage choisi (%s) n'est pas supporté par Catala"
+msgstr "Le langage sélectionné (%s) n'est pas supporté par Catala"
 
-#: ../driver.ml:71
+#: ../catala/driver.ml:72
 msgid "Weaving literate program into %s"
-msgstr "Tissage du programme littéraire dans %s"
+msgstr "Tissage du programme dans %s"
 
-#: ../driver.ml:99
+#: ../catala/driver.ml:100
 msgid "Writing to %s"
 msgstr "Écriture dans %s"

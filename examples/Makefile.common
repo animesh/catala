@@ -5,12 +5,15 @@ PYGMENTIZE_EN=../../syntax_highlighting/en/pygments/pygments/env/bin/pygmentize
 
 CATALA_LANG?=fr
 
-CATALA=dune exec ../../src/catala.exe -- --debug --language=$(CATALA_LANG)
+CURRENT_DIR=$(shell pwd)
+DUNE_BUILD_DIR=$(CURRENT_DIR)/../../_build
+
+CATALA=dune exec ../../src/catala.exe -- --debug --language=$(CATALA_LANG) --locale-dir=$(DUNE_BUILD_DIR)/locale
 
 LEGIFRANCE_CATALA=dune exec ../../src/legifrance_catala.exe --
 
-CATALA_EXE=../../_build/default/src/catala.exe
-LEGIFRANCE_CATALA_EXE=../../_build/default/src/legifrance_catala.exe
+CATALA_EXE=$(DUNE_BUILD_DIR)/default/src/catala.exe
+LEGIFRANCE_CATALA_EXE=$(DUNE_BUILD_DIR)/default/src/legifrance_catala.exe
 
 CLIENT_ID?=$(shell cat ../../legifrance_oauth_id.txt)
 CLIENT_SECRET?=$(shell cat ../../legifrance_oauth_secret.txt)

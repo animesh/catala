@@ -28,6 +28,13 @@ let file =
 
 let debug = Arg.(value & flag & info [ "debug"; "d" ] ~doc:"Prints debug information")
 
+let locale_dir =
+  Arg.(
+    value
+    & opt (some string) None
+    & info [ "locale-dir" ] ~docv:"LOCALEDIR"
+        ~doc:"Directory containing .mo translation files for the catala domain")
+
 let wrap_weaved_output =
   Arg.(
     value & flag
@@ -65,7 +72,9 @@ let pygmentize_loc =
         ~doc:"Location of a custom pygmentize executable for LaTeX source code highlighting")
 
 let catala_t f =
-  Term.(const f $ file $ debug $ wrap_weaved_output $ pygmentize_loc $ backend $ language $ output)
+  Term.(
+    const f $ file $ debug $ wrap_weaved_output $ pygmentize_loc $ backend $ language $ output
+    $ locale_dir)
 
 let info =
   let doc =

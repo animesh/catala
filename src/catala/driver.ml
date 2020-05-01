@@ -13,12 +13,13 @@
    the License. *)
 
 module I = Ir
-open Localize.Gettext
+open Localize.Translate
 
 (** Entry function for the executable. Returns a negative number in case of error. *)
 let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
     (pygmentize_loc : string option) (backend : string) (language : string option)
-    (output_file : string option) : int =
+    (output_file : string option) (locale_dir : string option) : int =
+  Localize.locale_dir := locale_dir;
   Cli.debug_flag := debug;
   Cli.debug_print (s_ "Reading files...");
   if Filename.extension source_file <> ".catala" then begin
