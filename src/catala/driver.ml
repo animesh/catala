@@ -19,8 +19,8 @@ open Localize.Translate
 let driver (source_file : string) (debug : bool) (wrap_weaved_output : bool)
     (pygmentize_loc : string option) (backend : string) (language : string option)
     (output_file : string option) (locale_dir : string option) : int =
-  Localize.locale_dir := locale_dir;
   Cli.debug_flag := debug;
+  Localize.set_locale_dir locale_dir;
   Cli.debug_print (s_ "Reading files...");
   if Filename.extension source_file <> ".catala" then begin
     Cli.error_print

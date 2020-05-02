@@ -5,8 +5,9 @@ PYGMENTIZE_EN=../../syntax_highlighting/en/pygments/pygments/env/bin/pygmentize
 
 CATALA_LANG?=fr
 
-CURRENT_DIR=$(shell pwd)
-DUNE_BUILD_DIR=$(CURRENT_DIR)/../../_build
+ROOT_DIR=$(abspath ${CURDIR}/../..)
+
+DUNE_BUILD_DIR=$(ROOT_DIR)/_build
 
 CATALA=dune exec ../../src/catala.exe -- --debug --language=$(CATALA_LANG) --locale-dir=$(DUNE_BUILD_DIR)/locale
 

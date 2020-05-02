@@ -12,17 +12,28 @@
    or implied. See the License for the specific language governing permissions and limitations under
    the License. *)
 
-let locale_dir : string option ref = ref None
-
 module Translate =
   Gettext.Program
     (struct
       let textdomain = "catala"
 
-      let codeset = Some "fr"
+      let codeset = None
 
-      let dir = !locale_dir
+      let dir = None
 
       let dependencies = Gettext.init
     end)
     (GettextCamomile.Map)
+
+let set_locale_dir (locale_dir : string option) : unit =
+  let args, _ = Translate.init in
+  List.iter
+    (fun arg ->
+      let key, spec, _ = arg in
+      if key = "--gettext-dir" then
+        match spec with
+        | Arg.String set_locale_dir -> (
+            match locale_dir with Some s -> set_locale_dir s | None -> () )
+        | _ -> assert false
+      (* should not happen *))
+    args
