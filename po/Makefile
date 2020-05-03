@@ -1,7 +1,7 @@
 OCAML_GETTEXT_PACKAGE = catala
 LINGUAS=$(shell cat LINGUAS)
-SOURCES=$(shell cat POTFILES)
-PODIR?=../../_build/locale
+SOURCES=$(shell find ../src -name '*.ml')
+PODIR?=../_build/locale
 
 OCAML_GETTEXT=ocaml-gettext
 OCAML_GETTEXT_EXTRACT_OPTIONS=
@@ -13,7 +13,7 @@ POFILES=$(addsuffix .po,$(LINGUAS))
 MOFILES=$(addsuffix .mo,$(LINGUAS))
 POTFILE=$(OCAML_GETTEXT_PACKAGE).pot
 
-all: extract compile install
+all: install
 
 extract: $(POFILES)
 

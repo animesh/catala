@@ -13,6 +13,7 @@
    the License. *)
 
 open Sedlexing
+open Localize.Translate
 module I = Parser.MenhirInterpreter
 
 let state (env : 'semantic_value I.env) : int =
@@ -136,7 +137,7 @@ let rec parse_source_files (source_files : string list) (language : Cli.language
   match source_files with
   | [] -> { program_items = []; program_source_files = [] }
   | source_file :: rest -> (
-      Cli.debug_print (Printf.sprintf "Parsing %s" source_file);
+      Cli.debug_print (Printf.sprintf (f_ "Parsing %s") source_file);
       let input = open_in source_file in
       let lexbuf = Sedlexing.Utf8.from_channel input in
       Sedlexing.set_filename lexbuf source_file;

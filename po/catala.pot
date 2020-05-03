@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-03 10:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../src/catala/cli.ml:67
+msgid "$(i, OUTPUT) is the file that will contain the extracted output (for compiler backends)"
+msgstr ""
+
+#: ../src/catala/cli.ml:48
+msgid "BACKEND"
+msgstr ""
+
+#: ../src/catala/cli.ml:48
+msgid "Backend selection among: LaTeX, Makefile"
+msgstr ""
+
+#: ../src/catala/cli.ml:92
+msgid "Catala is a domain-specific language for deriving faithful-by-construction algorithms from legislative texts."
+msgstr ""
+
+#: ../src/catala/cli.ml:28
+msgid "Catala master file to be compiled"
+msgstr ""
+
+#: ../src/catala/cli.ml:85
+msgid "Compiler for Catala, a specification language for tax and social benefits computation rules."
+msgstr ""
+
+#: ../src/catala/cli.ml:37
+msgid "Directory containing .mo translation files for the catala domain"
+msgstr ""
+
+#: ../src/catala/cli.ml:28
+msgid "FILE"
+msgstr ""
+
+#: ../src/catala/cli.ml:57
+msgid "Input language among: en, fr (default fr)"
+msgstr ""
+
+#: ../src/catala/cli.ml:56
+msgid "LANG"
+msgstr ""
+
+#: ../src/catala/cli.ml:36
+msgid "LOCALEDIR"
+msgstr ""
+
+#: ../src/catala/cli.ml:76
+msgid "Location of a custom pygmentize executable for LaTeX source code highlighting"
+msgstr ""
+
+#: ../src/catala/cli.ml:65
+msgid "OUTPUT"
+msgstr ""
+
+#: ../src/catala/cli.ml:75
+msgid "PYGMENTIZE"
+msgstr ""
+
+#: ../src/catala/parsing/parser_driver.ml:140
+msgid "Parsing %s"
+msgstr ""
+
+#: ../src/catala/errors.ml:76
+msgid "Parsing error %s on token \"%s\""
+msgstr ""
+
+#: ../src/catala/cli.ml:101
+msgid "Please file bug reports at https://gitlab.inria.fr/verifisc/catala/issues"
+msgstr ""
+
+#: ../src/catala/cli.ml:30
+msgid "Prints debug information"
+msgstr ""
+
+#: ../src/catala/driver.ml:26
+msgid "Reading files twice..."
+msgstr ""
+
+#: ../src/catala/driver.ml:25
+msgid "Reading files..."
+msgstr ""
+
+#: ../src/catala/driver.ml:29
+msgid "Source file %s must have the .catala extension!"
+msgstr ""
+
+#: ../src/catala/errors.ml:71
+msgid "Syntax error at token \"%s\" %s\n%s\n%s"
+msgstr ""
+
+#: ../src/catala/driver.ml:50
+msgid "The selected backend (%s) is not supported by Catala"
+msgstr ""
+
+#: ../src/catala/driver.ml:39
+msgid "The selected language (%s) is not supported by Catala"
+msgstr ""
+
+#: ../src/catala/cli.ml:98
+msgid "Typical usage:"
+msgstr ""
+
+#: ../src/catala/errors.ml:79
+msgid "Weaving error: %s"
+msgstr ""
+
+#: ../src/catala/driver.ml:74
+msgid "Weaving literate program into %s"
+msgstr ""
+
+#: ../src/catala/cli.ml:42
+msgid "Wraps literate programming output with a minimal preamble"
+msgstr ""
+
+#: ../src/catala/driver.ml:102
+msgid "Writing to %s"
+msgstr ""
+
+#: ../src/catala/cli.ml:117
+msgid "[DEBUG] "
+msgstr ""
+
+#: ../src/catala/cli.ml:120
+msgid "[ERROR] "
+msgstr ""
+
+#: ../src/catala/cli.ml:127
+msgid "[RESULT] "
+msgstr ""
+
+#: ../src/catala/cli.ml:124
+msgid "[WARNING] "
+msgstr ""
+
+#: ../src/catala/pos.ml:25
+msgid "in file %s, from %d:%d to %d:%d"
+msgstr ""
+
+#: ../src/catala/cli.ml:104
+msgid "on error."
+msgstr ""
+

@@ -17,9 +17,13 @@
 type t = Lexing.position * Lexing.position
 (** A position in the source code is a file, as well as begin and end location of the form col:line *)
 
+open Localize.Translate
+
 let to_string (pos : t) : string =
   let s, e = pos in
-  Printf.sprintf "in file %s, from %d:%d to %d:%d" s.Lexing.pos_fname s.Lexing.pos_lnum
+  Printf.sprintf
+    (f_ "in file %s, from %d:%d to %d:%d")
+    s.Lexing.pos_fname s.Lexing.pos_lnum
     (s.Lexing.pos_cnum - s.Lexing.pos_bol + 1)
     e.Lexing.pos_lnum
     (e.Lexing.pos_cnum - e.Lexing.pos_bol + 1)

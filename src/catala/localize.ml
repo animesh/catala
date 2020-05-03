@@ -17,7 +17,7 @@ module Translate =
     (struct
       let textdomain = "catala"
 
-      let codeset = None
+      let codeset = Some "UTF-8"
 
       let dir = None
 
@@ -30,10 +30,14 @@ let set_locale_dir (locale_dir : string option) : unit =
   List.iter
     (fun arg ->
       let key, spec, _ = arg in
-      if key = "--gettext-dir" then
+      ( if key = "--gettext-dir" then
         match spec with
         | Arg.String set_locale_dir -> (
             match locale_dir with Some s -> set_locale_dir s | None -> () )
+        | _ -> assert false (* should not happen *) );
+      if key = "--gettext-failsafe" then
+        match spec with
+        | Arg.Symbol (_, set_failsafe) -> set_failsafe "inform-stderr"
         | _ -> assert false
       (* should not happen *))
     args

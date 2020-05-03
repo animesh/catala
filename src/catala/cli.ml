@@ -19,32 +19,33 @@ let source_files : string list ref = ref []
 let debug_flag = ref false
 
 open Cmdliner
+open Localize.Translate
 
 let file =
   Arg.(
     required
     & pos 1 (some file) None
-    & info [] ~docv:"FILE" ~doc:"Catala master file to be compiled")
+    & info [] ~docv:(s_ "FILE") ~doc:(s_ "Catala master file to be compiled"))
 
-let debug = Arg.(value & flag & info [ "debug"; "d" ] ~doc:"Prints debug information")
+let debug = Arg.(value & flag & info [ "debug"; "d" ] ~doc:(s_ "Prints debug information"))
 
 let locale_dir =
   Arg.(
     value
     & opt (some string) None
-    & info [ "locale-dir" ] ~docv:"LOCALEDIR"
-        ~doc:"Directory containing .mo translation files for the catala domain")
+    & info [ "locale-dir" ] ~docv:(s_ "LOCALEDIR")
+        ~doc:(s_ "Directory containing .mo translation files for the catala domain"))
 
 let wrap_weaved_output =
   Arg.(
     value & flag
-    & info [ "wrap"; "w" ] ~doc:"Wraps literate programming output with a minimal preamble")
+    & info [ "wrap"; "w" ] ~doc:(s_ "Wraps literate programming output with a minimal preamble"))
 
 let backend =
   Arg.(
     required
     & pos 0 (some string) None
-    & info [] ~docv:"BACKEND" ~doc:"Backend selection among: LaTeX, Makefile")
+    & info [] ~docv:(s_ "BACKEND") ~doc:(s_ "Backend selection among: LaTeX, Makefile"))
 
 type backend_option = Latex | Makefile | Html
 
@@ -52,7 +53,8 @@ let language =
   Arg.(
     value
     & opt (some string) None
-    & info [ "l"; "language" ] ~docv:"LANG" ~doc:"Input language among: en, fr (default fr)")
+    & info [ "l"; "language" ] ~docv:(s_ "LANG")
+        ~doc:(s_ "Input language among: en, fr (default fr)"))
 
 type language_option = Fr | En
 
@@ -60,16 +62,18 @@ let output =
   Arg.(
     value
     & opt (some string) None
-    & info [ "output"; "o" ] ~docv:"OUTPUT"
+    & info [ "output"; "o" ] ~docv:(s_ "OUTPUT")
         ~doc:
-          "$(i, OUTPUT) is the file that will contain the extracted output (for compiler backends)")
+          (s_
+             "$(i, OUTPUT) is the file that will contain the extracted output (for compiler \
+              backends)"))
 
 let pygmentize_loc =
   Arg.(
     value
     & opt (some string) None
-    & info [ "pygmentize"; "p" ] ~docv:"PYGMENTIZE"
-        ~doc:"Location of a custom pygmentize executable for LaTeX source code highlighting")
+    & info [ "pygmentize"; "p" ] ~docv:(s_ "PYGMENTIZE")
+        ~doc:(s_ "Location of a custom pygmentize executable for LaTeX source code highlighting"))
 
 let catala_t f =
   Term.(
@@ -78,24 +82,26 @@ let catala_t f =
 
 let info =
   let doc =
-    "Compiler for Catala, a specification language for tax and social benefits computation rules."
+    s_
+      "Compiler for Catala, a specification language for tax and social benefits computation rules."
   in
   let man =
     [
       `S Manpage.s_description;
       `P
-        "Catala is a domain-specific language for deriving faithful-by-construction algorithms \
-         from legislative texts.";
+        (s_
+           "Catala is a domain-specific language for deriving faithful-by-construction algorithms \
+            from legislative texts.");
       `S Manpage.s_authors;
       `P "Denis Merigoux <denis.merigoux@inria.fr>";
       `S Manpage.s_examples;
-      `P "Typical usage:";
+      `P (s_ "Typical usage:");
       `Pre "catala LaTeX file.catala";
       `S Manpage.s_bugs;
-      `P "Please file bug reports at https://gitlab.inria.fr/verifisc/catala/issues";
+      `P (s_ "Please file bug reports at https://gitlab.inria.fr/verifisc/catala/issues");
     ]
   in
-  let exits = Term.default_exits @ [ Term.exit_info ~doc:"on error." 1 ] in
+  let exits = Term.default_exits @ [ Term.exit_info ~doc:(s_ "on error.") (-1) ] in
   Term.info "catala"
     ~version:
       ( match Build_info.V1.version () with
@@ -108,16 +114,17 @@ let info =
 (**{2 Markers}*)
 
 (** Prints [\[DEBUG\]] in purple on the terminal standard output *)
-let debug_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.magenta ] "[DEBUG] "
+let debug_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.magenta ] (f_ "[DEBUG] ")
 
 (** Prints [\[ERROR\]] in red on the terminal error output *)
-let error_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.red ] "[ERROR] "
+let error_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.red ] (f_ "[ERROR] ")
 
 (** Prints [\[WARNING\]] in yellow on the terminal standard output *)
-let warning_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.yellow ] "[WARNING] "
+let warning_marker =
+  ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.yellow ] (f_ "[WARNING] ")
 
 (** Prints [\[RESULT\]] in green on the terminal standard output *)
-let result_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.green ] "[RESULT] "
+let result_marker = ANSITerminal.sprintf [ ANSITerminal.Bold; ANSITerminal.green ] (f_ "[RESULT] ")
 
 (**{2 Printers}*)
 

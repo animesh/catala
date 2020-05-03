@@ -62,13 +62,18 @@ let retrieve_loc_text (pos : Pos.t) : string =
        (Printf.sprintf "\n%s\n" (String.concat "\n" pos_lines))
        (fun i -> Printf.sprintf "%*d | " (int_of_float (log (float_of_int eline))) (sline + i - 1)))
 
+open Localize.Translate
+
 let parser_error (loc : Lexing.position * Lexing.position) (token : string) (msg : string) =
   raise
     (ParsingError
-       (Printf.sprintf "Syntax error at token \"%s\" %s\n%s\n%s" token (Pos.to_string loc)
-          (retrieve_loc_text loc) msg))
+       (Printf.sprintf
+          (f_ "Syntax error at token \"%s\" %s\n%s\n%s")
+          token (Pos.to_string loc) (retrieve_loc_text loc) msg))
 
 let lexer_error (loc : Lexing.position * Lexing.position) (msg : string) =
-  raise (LexingError (Printf.sprintf "Parsing error %s on token \"%s\"" (Pos.to_string loc) msg))
+  raise
+    (LexingError (Printf.sprintf (f_ "Parsing error %s on token \"%s\"") (Pos.to_string loc) msg))
 
-let weaving_error (msg : string) = raise (WeavingError (Printf.sprintf "Weaving error: %s" msg))
+let weaving_error (msg : string) =
+  raise (WeavingError (Printf.sprintf (f_ "Weaving error: %s") msg))

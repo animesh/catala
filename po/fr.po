@@ -1,0 +1,181 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Catala\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-01 17:19+0000\n"
+"PO-Revision-Date: 2020-05-03 12:17+0200\n"
+"Language: fr\n"
+"Last-Translator: Denis Merigoux <denis.merigoux@netc.fr>\n"
+"Language-Team: français <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: ../src/catala/cli.ml:67
+msgid ""
+"$(i, OUTPUT) is the file that will contain the extracted output (for "
+"compiler backends)"
+msgstr ""
+"$(i, SORTIE) est le fichier qui contient la sortie du compilateur (pour "
+"n'importe quelle cible)"
+
+#: ../src/catala/cli.ml:48
+msgid "BACKEND"
+msgstr "CIBLE"
+
+#: ../src/catala/cli.ml:48
+msgid "Backend selection among: LaTeX, Makefile"
+msgstr "Cible du compilateur parmi: Latex, Makefile"
+
+#: ../src/catala/cli.ml:92
+msgid ""
+"Catala is a domain-specific language for deriving faithful-by-construction "
+"algorithms from legislative texts."
+msgstr ""
+"Catala est un langage à domaine spécifique conçu pour annoter les textes "
+"législatifs avec un contenu algorithmique fidèle par construction"
+
+#: ../src/catala/cli.ml:28
+msgid "Catala master file to be compiled"
+msgstr "Fichier maître Catala à compiler"
+
+#: ../src/catala/cli.ml:85
+msgid ""
+"Compiler for Catala, a specification language for tax and social benefits "
+"computation rules."
+msgstr ""
+"Compilateur pour Catala, un langage de spécification pour les règles de "
+"calcul socio-fiscales"
+
+#: ../src/catala/cli.ml:37
+msgid "Directory containing .mo translation files for the catala domain"
+msgstr ""
+"Dossier contenant les fichiers de traduction .mo pour le domaine \"catala\""
+
+#: ../src/catala/cli.ml:28
+msgid "FILE"
+msgstr "FICHIER"
+
+#: ../src/catala/cli.ml:57
+msgid "Input language among: en, fr (default fr)"
+msgstr "Langage d'entrée parmi: en, fr (par défaut fr)"
+
+#: ../src/catala/cli.ml:56
+msgid "LANG"
+msgstr "LANGUE"
+
+#: ../src/catala/cli.ml:36
+msgid "LOCALEDIR"
+msgstr "DOSSIERLOCALES"
+
+#: ../src/catala/cli.ml:76
+msgid ""
+"Location of a custom pygmentize executable for LaTeX source code highlighting"
+msgstr ""
+"Emplacement d'un exécutable pygmentize personnalisé pour la coloration "
+"syntaxique sous LaTeX"
+
+#: ../src/catala/cli.ml:65
+msgid "OUTPUT"
+msgstr "SORTIE"
+
+#: ../src/catala/cli.ml:75
+msgid "PYGMENTIZE"
+msgstr "PYGMENTIZE"
+
+#: ../src/catala/parsing/parser_driver.ml:140
+msgid "Parsing %s"
+msgstr "Analyse syntaxique de %s"
+
+#: ../src/catala/errors.ml:76
+msgid "Parsing error %s on token \"%s\""
+msgstr "Erreur de syntaxe %s sur le mot %s"
+
+#: ../src/catala/cli.ml:101
+msgid ""
+"Please file bug reports at https://gitlab.inria.fr/verifisc/catala/issues"
+msgstr ""
+"Merci d'envoyer vos rapports de bug à https://gitlab.inria.fr/verifisc/"
+"catala/issues"
+
+#: ../src/catala/cli.ml:30
+msgid "Prints debug information"
+msgstr "Affiche des informations de déboggage"
+
+#: ../src/catala/driver.ml:26
+msgid "Reading files twice..."
+msgstr "Lecture double des fichiers..."
+
+#: ../src/catala/driver.ml:25
+msgid "Reading files..."
+msgstr "Lecture des fichiers source..."
+
+#: ../src/catala/driver.ml:29
+msgid "Source file %s must have the .catala extension!"
+msgstr "Le fichier source %s doit avoir l'extension .catala !"
+
+#: ../src/catala/errors.ml:71
+msgid ""
+"Syntax error at token \"%s\" %s\n"
+"%s\n"
+"%s"
+msgstr ""
+"Erreur de syntaxe au mot \"%s\" %s\n"
+"%s\n"
+"%s"
+
+#: ../src/catala/driver.ml:50
+msgid "The selected backend (%s) is not supported by Catala"
+msgstr "La cible sélectionnée (%s) n'est pas supportée par Catala"
+
+#: ../src/catala/driver.ml:39
+msgid "The selected language (%s) is not supported by Catala"
+msgstr "Le langage sélectionné (%s) n'est pas supporté par Catala"
+
+#: ../src/catala/cli.ml:98
+msgid "Typical usage:"
+msgstr "Exemple typique d'utilisation"
+
+#: ../src/catala/errors.ml:79
+msgid "Weaving error: %s"
+msgstr "Erreur de tissage : %s"
+
+#: ../src/catala/driver.ml:74
+msgid "Weaving literate program into %s"
+msgstr "Tissage du programme dans %s"
+
+#: ../src/catala/cli.ml:42
+msgid "Wraps literate programming output with a minimal preamble"
+msgstr "Enveloppe la sortie littéraire du programme avec un préambule minimal"
+
+#: ../src/catala/driver.ml:102
+msgid "Writing to %s"
+msgstr "Écriture dans %s"
+
+#: ../src/catala/cli.ml:117
+msgid "[DEBUG] "
+msgstr "[DÉBOGGAGE]"
+
+#: ../src/catala/cli.ml:120
+msgid "[ERROR] "
+msgstr "[ERREUR]"
+
+#: ../src/catala/cli.ml:127
+msgid "[RESULT] "
+msgstr "[RÉSULTAT]"
+
+#: ../src/catala/cli.ml:124
+msgid "[WARNING] "
+msgstr "[ATTENTION]"
+
+#: ../src/catala/pos.ml:25
+msgid "in file %s, from %d:%d to %d:%d"
+msgstr "dans le fichier %s, depuis %d:%d jusqu'à %d:%d"
+
+#: ../src/catala/cli.ml:104
+msgid "on error."
+msgstr "lors d'une erreur."
+
