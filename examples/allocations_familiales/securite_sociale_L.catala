@@ -21,25 +21,35 @@ Les prestations familiales comprennent :
 8°) (Abrogé) ;
 9°) l'allocation journalière de présence parentale.
 /*
-# Voir métadonnnée L511_1.prestation_courante
+déclaration énumération Prestation:
+  -- PrestationAccueilJeuneEnfant
+  -- PrestationAllocationsFamiliales
+  -- PrestationComplémentFamilial
+  -- PrestationAllocationLogement
+  -- PrestationAllocationÉducationEnfantHandicapé
+  -- PrestationAllocationSoutienFamilial
+  -- PrestationAllocationRentréeScolaire
+  -- PrestationAllocationJournalièrePresenceParentale
 */
 
 @@Chapitre 2 : Champ d'application@@++++
 
+@@Début métadonnées@@
+/*
+déclaration structure L512_3 :
+  donnée plafond_rémunération_mensuelle_alinéa_2 contenu montant
+  donnée âge_limite_alinéa_2 contenu entier
+  donnée âge_limite_alinéa_2_alternatif contenu entier
+*/
+@@Fin métadonnées@@
+
 @Article L512-3|LEGIARTI000038834523@
 Sous réserve des règles particulières à chaque prestation, ouvre droit aux prestations familiales :
-/*
-champ d'application CalculPrestationsFamiliales :
-  # On suppose dans le programme  que tous les enfants déclarés dans
-  # ménage.enfants ouvrent droit aux allocations familiales
-  assertion pour tout enfant dans ménage.enfants on a
-    prestations_familiales.droits_ouverts de enfant
-*/
 
 1°) tout enfant jusqu'à la fin de l'obligation scolaire ;
 /*
-champ d'application CalculPrestationsFamiliales :
-  règle prestations_familiales.droits_ouverts de enfant sous condition
+champ d'application PrestationsFamiliales :
+  règle droits_ouverts de enfant sous condition
     (enfant dans ménage.enfants) et
     (date_calcul <= enfant.fin_obligation_scolaire)
   conséquence rempli
@@ -47,10 +57,10 @@ champ d'application CalculPrestationsFamiliales :
 
 2°) après la fin de l'obligation scolaire, et jusqu'à un âge limite, tout enfant dont la rémunération éventuelle n'excède pas un plafond.
 /*
-champ d'application CalculPrestationsFamiliales :
+champ d'application PrestationsFamiliales :
   # On définit les conditions hors âge d'abord car elles
   # sont référencées dans l'article L521-1
-  règle prestations_familiales.conditions_hors_âge de enfant sous condition
+  règle droits_ouverts_hors_âge de enfant sous condition
     (enfant dans ménage.enfants) et (
       (date_calcul <= enfant.fin_obligation_scolaire) ou
       (enfant.rémuneration_mensuelle <
@@ -58,21 +68,21 @@ champ d'application CalculPrestationsFamiliales :
     )
   conséquence rempli
 
-  règle prestations_familiales.droits_ouverts de enfant sous condition
+  règle droits_ouverts de enfant sous condition
     (enfant dans ménage.enfants) et
     (date_calcul > enfant.fin_obligation_scolaire) et
-    (l512_3.conditions_hors_âge de enfant) et
+    (droits_ouverts_hors_âge de enfant) et
     (enfant.âge < l512_3.âge_limite_alinéa_2)
   conséquence rempli
 */
 
 Toutefois, pour l'attribution du complément familial et de l'allocation de logement mentionnés aux 3° et 4° de l'article L. 511-1 , l'âge limite peut être différent de celui mentionné au 2° du présent article.
 /*
-champ d'application CalculPrestationsFamiliales :
+champ d'application PrestationsFamiliales :
   définition l512_3.âge_limite_alinéa_2 sous condition
     l512_3.âge_limite_alinéa_2_alternatif_utilisé et
-    (l511_1.prestation_courante = ComplémentFamilial ou
-     l511_1.prestation_courante = AllocationLogement)
+    (prestation = PrestationComplémentFamilial ou
+     prestation = PrestationAllocationLogement)
   conséquence égal à
     l512_3.âge_limite_alinéa_2_alternatif
 */
@@ -81,55 +91,72 @@ champ d'application CalculPrestationsFamiliales :
 
 @@Chapitre 1er : Allocations familiales@@++++
 
+
+@@Début métadonnées@@
+/*
+déclaration structure L521_1 :
+  donnée nombre_minimum_enfants contenu montant
+*/
+@@Fin métadonnées@@
+
 @Article L521-1|LEGIARTI000029963006@
 Les allocations familiales sont dues à partir du deuxième enfant à charge.
 /*
-champ d'application CalculAllocationsFamiliales :
-  règle allocations_familiales.droits_ouverts sous condition
-    nombre de ménage.enfants >= 2
+champ d'application AllocationsFamiliales :
+  règle droits_ouverts sous condition
+    (nombre pour enfant dans ménage.enfants de
+      règles_prestations_familiales.droit_ouverts de enfant) >= 2
   conséquence rempli
 
   # Les droits doivent être ouverts pour appliquer le champ
   # CalculAllocationsFamiliales. Si cette condition n'est pas remplie,
   # alors il est inutile de calculer le reste
-  assertion allocations_familiales.droits_ouverts
-  # Le champ d'application CalculAllocationsFamiliales inclus
-  # PrestationsFamiliales, mais à condition que la prestation courante
-  # soit cohérente
-  définition l511_1.prestation_courante égal à AllocationFamiliale
+  assertion droits_ouverts
 */
 
 Une allocation forfaitaire par enfant d'un montant fixé par décret est versée pendant un an à la personne ou au ménage qui assume la charge d'un nombre minimum d'enfants également fixé par décret lorsque l'un ou plusieurs des enfants qui ouvraient droit aux allocations familiales atteignent l'âge limite mentionné au 2° de l'article L. 512-3 . Cette allocation est versée à la condition que le ou les enfants répondent aux conditions autres que celles de l'âge pour l'ouverture du droit aux allocations familiales.
 /*
-champ d'application CalculAllocationsFamiliales :
-  assertion fixé allocation_forfaitaire.montant_versé par décret
-
+champ d'application AllocationsFamiliales :
   # Ici, l'ouverture du droit aux allocations familiales est conditionné
   # au fait d'avoir deux enfants à charges qui répondent aux conditions
   # d'ouverture du droit à une prestation familiale. Pour cette raison,
   # nous nous référons ici aux conditions_hors_âge de prestations_familiales
   # et non pas de allocations_familiales
-  règle allocations_familiales.conditions_hors_âge de enfant sous condition
-    prestations_familiales.conditions_hors_âge de enfant
+  règle droit_ouverts_enfant_hors_âge de enfant
+  sous condition
+    règles_prestations_familiales.droits_ouverts_hors_âge de enfant
   conséquence  rempli
 
-  règle allocation_forfaitaire.droits_ouverts de enfant sous condition
-    (nombre de ménage.enfants >= l512_1.nombre_minimum_enfants) et
+champ d'application AllocationForfaitaireAllocationsFamiliales :
+  assertion fixé montant_versé par décret
+
+  règle droits_ouverts de enfant sous condition
+    (nombre de ménage.enfants >= l521_1.nombre_minimum_enfants) et
     (enfant dans ménage.enfants) et
-    (enfant.âge = l512_3.âge_limite_alinéa_2) et
-    (allocations_familiales.conditions_hors_âge de enfant)
+    (enfant.âge = règles_allocations_familiales.l512_3.âge_limite_alinéa_2) et
+    (règles_allocations_familiales.droit_ouverts_enfant_hors_âge de enfant)
   conséquence rempli
 */
 
 Le montant des allocations mentionnées aux deux premiers alinéas du présent article, ainsi que celui des majorations mentionnées à l'article L. 521-3 varient en fonction des ressources du ménage ou de la personne qui a la charge des enfants, selon un barème défini par décret.
 /*
-champ d'application CalculAllocationsFamiliales :
-  assertion fixé allocations_familiales.montant_versé  par décret
-  assertion varie allocations_familiales.montant_versé avec
-     l521_1.ressources_ménage
-  assertion fixé majorations_allocations_familiales.montant_versé par décret
-  assertion varie majorations_allocations_familiales.montant_versé avec
-     l521_1.ressources_ménage
+champ d'application AllocationsFamiliales :
+  assertion fixé montant_versé.total  par décret
+  assertion varie montant_versé.total avec  ménage.ressources
+
+champ d'application AllocationForfaitaireAllocationsFamiliales :
+  # ligne du dessous commentée car déjà mentionnée plus haut
+  # assertion fixé montant_versé.total par décret
+  assertion varie montant_versé.total avec ménage.ressources
+
+champ d'application ComplémentAllocationsFamiliales :
+  assertion fixé montant_versé.total par décret
+  assertion varie montant_versé.total avec
+     ménage.ressources
+*/
+
+/*
+# TODO: start from here!
 */
 
 Le montant des allocations familiales varie en fonction du nombre d'enfants à charge.

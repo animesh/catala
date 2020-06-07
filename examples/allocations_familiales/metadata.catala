@@ -86,16 +86,6 @@ champ d'application MénageBienFormé :
     alors enfant.prise_en_charge = Complète contenu service_social
     sinon vrai
 
-déclaration énumération Prestation:
-  -- PrestationAccueilJeuneEnfant
-  -- AllocationFamiliale
-  -- ComplémentFamilial
-  -- AllocationLogement
-  -- AllocationÉducationEnfantHandicapé
-  -- AllocationSoutienFamilial
-  -- AllocationRentréeScolaire
-  -- AllocationJournalièrePresenceParentale
-
 déclaration structure PrestationsFamiliales :
   condition conditions_hors_âge dépend de Enfant
   condition droits_ouverts dépend de Enfant
